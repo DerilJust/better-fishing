@@ -1,17 +1,17 @@
 buildscript {
     repositories {
-        maven {
-            url = 'https://maven.minecraftforge.net/'
-        }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
     }
 }
-apply plugin: 'net.minecraftforge.gradle'
-//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'org.spongepowered.mixin' version '0.7.+' apply true
+}
 
 version = "${mod_version}"
 group = "net.theawesomegem.fishingmadebetter" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -21,6 +21,17 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
 minecraft {
     mappings channel: mappings_channel, version: mappings_version
+    runs{
+        client {
+            workingDirectory project.file('run')
+
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
