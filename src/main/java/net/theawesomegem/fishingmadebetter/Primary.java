@@ -9,9 +9,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.theawesomegem.fishingmadebetter.proxy.CommonProxy;
 
-@Mod(modid = ModInfo.MOD_ID, version = ModInfo.VERSION, name = ModInfo.MOD_NAME, dependencies = "after:advanced-fishing;after:aquaculture;after:levelup2")
+@Mod(ModInfo.MOD_ID)
 public class Primary {
-    @Mod.Instance(ModInfo.MOD_ID)
     public static Primary Instance;
 
     @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.SERVER_PROXY)
